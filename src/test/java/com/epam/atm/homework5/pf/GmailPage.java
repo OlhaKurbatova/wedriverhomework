@@ -11,30 +11,24 @@ import java.util.regex.Pattern;
 
 public abstract class GmailPage extends AbstractPagePF {
 
-    protected static final String XPATH_DRAFTS_LINK = "//a[@href=\"https://mail.google.com/mail/u/0/#drafts\"]";
-    private static final String LINK_TEXT_SENT_MAIL = "Sent Mail";
-    private static final String XPATH_BIN = "//a[@title='Bin']";
-    private static final String XPATH_COMPOSE_BTN = "//div[@class='T-I J-J5-Ji T-I-KE L3']";
-    private static final String XPATH_ACCOUNT_ICON = "//span[@class='gb_8a gbii']";
-    private static final String XPATH_LOG_OUT = "//a[@class='gb_za gb_Zf gb_6f gb_Ke gb_Eb']";
     public static final By SELECTED_SENT_DRAFT_LOCATOR = By.xpath("//div[@class='aim ain']/div/div/div[2]/span/a");
 
-    @FindBy(xpath = XPATH_ACCOUNT_ICON)
+    @FindBy(xpath = "//span[@class='gb_8a gbii']")
     WebElement accountIcon;
 
-    @FindBy(xpath = XPATH_LOG_OUT)
+    @FindBy(xpath = "//a[@class='gb_za gb_Zf gb_6f gb_Ke gb_Eb']")
     WebElement logOutBtn;
 
-    @FindBy(linkText = LINK_TEXT_SENT_MAIL)
+    @FindBy(linkText = "Sent Mail")
     WebElement sentLink;
 
-    @FindBy(xpath = XPATH_DRAFTS_LINK)
+    @FindBy(xpath = "//a[@href=\"https://mail.google.com/mail/u/0/#drafts\"]")
     WebElement draftsLink;
 
-    @FindBy(xpath = XPATH_BIN)
+    @FindBy(xpath = "//a[@title='Bin']")
     WebElement binLink;
 
-    @FindBy(xpath = XPATH_COMPOSE_BTN)
+    @FindBy(xpath = "//div[@class='T-I J-J5-Ji T-I-KE L3']")
     WebElement composeBtn;
 
     protected GmailPage(WebDriver driver) {

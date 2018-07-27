@@ -7,9 +7,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class BinMailPage extends MailListPage {
-    private static final String XPATH_DELETE_FOREVER = "//div[text()='Delete forever']";
     private static final String LINK_TEXT_NO_CONVERSATIONS_IN_BIN = "No conversations in Bin.";
-    @FindBy(xpath = XPATH_DELETE_FOREVER)
+
+    @FindBy(xpath = "//div[text()='Delete forever']")
     WebElement deleteForeverBtn;
 
     protected BinMailPage(WebDriver driver) {

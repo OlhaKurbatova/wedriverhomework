@@ -10,29 +10,23 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.regex.Pattern;
 
 public class ComposePopUpPage extends GmailPage {
-    private static final String XPATH_TO_FIELD = "//textarea[@name='to']";
-    private static final String XPATH_SUBJECT_FIELD = "//input[@name='subjectbox']";
-    private static final String XPATH_MESSAGE_FIELD = "//div[@class='Am Al editable LW-avf']";
-    private static final String XPATH_SEND_BTN = "//div[text()='Send']";
-    private static final String XPATH_CLOSE_ICON = "//img[@class='Ha']";
-    private static final String XPATH_MESSAGE_POPUP_FIELD = "//div[@class='Am Al editable LW-avf']";
 
-    @FindBy(xpath = XPATH_MESSAGE_POPUP_FIELD)
+    @FindBy(xpath = "//div[@class='Am Al editable LW-avf']")
     WebElement popupMessageField;
 
-    @FindBy(xpath = XPATH_TO_FIELD)
+    @FindBy(xpath = "//textarea[@name='to']")
     WebElement toField;
 
-    @FindBy(xpath = XPATH_SUBJECT_FIELD)
+    @FindBy(xpath = "//input[@name='subjectbox']")
     WebElement subjectField;
 
-    @FindBy(xpath = XPATH_MESSAGE_FIELD)
+    @FindBy(xpath = "//div[@class='Am Al editable LW-avf']")
     WebElement messageField;
 
-    @FindBy(xpath = XPATH_SEND_BTN)
+    @FindBy(xpath = "//div[text()='Send']")
     WebElement sendBtn;
 
-    @FindBy(xpath = XPATH_CLOSE_ICON)
+    @FindBy(xpath = "//img[@class='Ha']")
     WebElement closeIcon;
 
 

@@ -5,11 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class PasswordPage extends AbstractPagePF {
-    private static final String XPATH_PASSWORD = "//input[@type=\"password\"]";
-    private static final String ID_PASSWORD_NEXT = "passwordNext";
-    @FindBy(xpath = XPATH_PASSWORD)
+
+    @FindBy(xpath = "//input[@type=\"password\"]")
     WebElement passwordFieldInput;
-    @FindBy(id = ID_PASSWORD_NEXT)
+    @FindBy(id = "passwordNext")
     WebElement passwordNextButton;
 
     protected PasswordPage(WebDriver driver) {

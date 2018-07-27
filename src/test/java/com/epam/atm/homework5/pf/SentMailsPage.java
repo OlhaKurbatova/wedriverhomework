@@ -12,10 +12,9 @@ public class SentMailsPage extends MailListPage {
 
     private static final String CLASS_NAME_EMPTY = "TC";
     private static final String XPATH_DELETE_SENT = "//div[@title='Delete']/div";
-    private static final String XPATH_CONFIRM_DELETE_DIALOG_BTN_OK = "//button[@name='ok']";
     private static final String XPATH_SENT_SUBJECT = "//span[text()='%s']";
 
-    @FindBy(xpath = XPATH_CONFIRM_DELETE_DIALOG_BTN_OK)
+    @FindBy(xpath = "//button[@name='ok']")
     WebElement confirmDeleteBtn;
 
     protected SentMailsPage(WebDriver driver) {

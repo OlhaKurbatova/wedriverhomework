@@ -5,11 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LogInPage extends AbstractPagePF {
-    private static final String ID_LOG_IN_FIELD = "identifierId";
-    private static final String CSS_LOGIN_NEXT_BTN = "#identifierNext";
-    @FindBy(id = ID_LOG_IN_FIELD)
+
+    @FindBy(id = "identifierId")
     WebElement loginFieldInput;
-    @FindBy(css = CSS_LOGIN_NEXT_BTN)
+    @FindBy(css = "#identifierNext")
     WebElement loginNextButton;
 
 

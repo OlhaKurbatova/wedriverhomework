@@ -10,15 +10,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.regex.Pattern;
 
 public class DraftsMailPage extends MailListPage {
-    private static final String XPATH_DISCARD_DRAFTS = "//div[text()='Discard drafts']";
-    private static final String XPATH_DRAFTS_LINK = "//a[@href=\"https://mail.google.com/mail/u/0/#drafts\"]";
-    private static final String DRAFTS_COUNT_REGEX = "\\(\\d\\)";
-    public static final Pattern DRAFTS_TEXT_PATTERN = Pattern.compile(DRAFTS_COUNT_REGEX);
+    public static final Pattern DRAFTS_TEXT_PATTERN = Pattern.compile("\\(\\d\\)");
     private static final String XPATH_DRAFTED_SUBJECT = "//span[text()='%s']";
 
-    public static final By DRAFTS_LINK_LOCATOR = By.xpath(XPATH_DRAFTS_LINK);
+    public static final By DRAFTS_LINK_LOCATOR = By.xpath("//a[@href=\"https://mail.google.com/mail/u/0/#drafts\"]");
 
-    @FindBy(xpath = XPATH_DISCARD_DRAFTS)
+    @FindBy(xpath = "//div[text()='Discard drafts']")
     WebElement discardDraftsBtn;
 
     protected DraftsMailPage(WebDriver driver) {
