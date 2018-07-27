@@ -12,6 +12,7 @@ public class SentMailsPage extends MailListPage {
 
     private static final String CLASS_NAME_EMPTY = "TC";
     private static final String XPATH_DELETE_SENT = "//div[@title='Delete']/div";
+
     private static final String XPATH_SENT_SUBJECT = "//span[text()='%s']";
 
     @FindBy(xpath = "//button[@name='ok']")

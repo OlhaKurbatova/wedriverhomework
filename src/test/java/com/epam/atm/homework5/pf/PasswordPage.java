@@ -9,6 +9,7 @@ public class PasswordPage extends AbstractPagePF {
     @FindBy(xpath = "//input[@type=\"password\"]")
     WebElement passwordFieldInput;
     @FindBy(id = "passwordNext")
+
     WebElement passwordNextButton;
 
     protected PasswordPage(WebDriver driver) {
