@@ -1,4 +1,4 @@
-package com.epam.atm.homework5.pf;
+package com.epam.atm.homework5.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -36,18 +36,21 @@ public class ComposePopUpPage extends GmailPage {
 
     public ComposePopUpPage fillToField(String to) {
         waitForElementVisible(toField);
+        toField.clear();
         toField.sendKeys(to);
         return this;
     }
 
     public ComposePopUpPage fillSubjectField(String subject) {
         waitForElementVisible(subjectField);
+        subjectField.clear();
         subjectField.sendKeys(subject);
         return this;
     }
 
     public ComposePopUpPage fillMessageField(String message) {
         waitForElementVisible(messageField);
+        messageField.clear();
         messageField.sendKeys(message);
         return this;
     }

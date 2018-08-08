@@ -1,4 +1,4 @@
-package com.epam.atm.homework5.pf;
+package com.epam.atm.homework5.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -17,7 +17,7 @@ public class BinMailPage extends MailListPage {
         super(driver);
     }
 
-    public boolean isEmpty() {
+    public boolean isMailListEmpty() {
         try {
             driver.findElement(By.linkText(LINK_TEXT_NO_CONVERSATIONS_IN_BIN));
             return true;
@@ -27,7 +27,7 @@ public class BinMailPage extends MailListPage {
     }
 
     public BinMailPage clearBin() {
-        if (!isEmpty()) {
+        if (!isMailListEmpty()) {
             ((BinMailPage) checkAllCheckboxes()).clickDeleteForever();
         }
         return this;

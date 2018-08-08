@@ -1,15 +1,15 @@
-package com.epam.atm.homework5.pf;
+package com.epam.atm.homework5.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class PasswordPage extends AbstractPagePF {
-
-    @FindBy(xpath = "//input[@type=\"password\"]")
+public class PasswordPage extends AbstractPage {
+    private static final String XPATH_PASSWORD = "//input[@type=\"password\"]";
+    private static final String ID_PASSWORD_NEXT = "passwordNext";
+    @FindBy(xpath = XPATH_PASSWORD)
     WebElement passwordFieldInput;
-    @FindBy(id = "passwordNext")
-
+    @FindBy(id = ID_PASSWORD_NEXT)
     WebElement passwordNextButton;
 
     protected PasswordPage(WebDriver driver) {
@@ -19,6 +19,7 @@ public class PasswordPage extends AbstractPagePF {
 
     public PasswordPage fillPasswordField(String password) {
         waitForElementVisible(passwordFieldInput);
+        passwordFieldInput.clear();
         passwordFieldInput.sendKeys(password);
         return this;
     }

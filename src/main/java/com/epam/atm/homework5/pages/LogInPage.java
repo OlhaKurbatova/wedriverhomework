@@ -1,14 +1,15 @@
-package com.epam.atm.homework5.pf;
+package com.epam.atm.homework5.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LogInPage extends AbstractPagePF {
-
-    @FindBy(id = "identifierId")
+public class LogInPage extends AbstractPage {
+    private static final String ID_LOG_IN_FIELD = "identifierId";
+    private static final String CSS_LOGIN_NEXT_BTN = "#identifierNext";
+    @FindBy(id = ID_LOG_IN_FIELD)
     WebElement loginFieldInput;
-    @FindBy(css = "#identifierNext")
+    @FindBy(css = CSS_LOGIN_NEXT_BTN)
     WebElement loginNextButton;
 
 
@@ -17,6 +18,8 @@ public class LogInPage extends AbstractPagePF {
     }
 
     public LogInPage fillLoginField(String user) {
+        waitForElementVisible(loginFieldInput);
+        loginFieldInput.clear();
         loginFieldInput.sendKeys(user);
         return this;
     }

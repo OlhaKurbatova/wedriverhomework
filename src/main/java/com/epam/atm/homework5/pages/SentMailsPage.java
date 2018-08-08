@@ -1,4 +1,4 @@
-package com.epam.atm.homework5.pf;
+package com.epam.atm.homework5.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -22,7 +22,7 @@ public class SentMailsPage extends MailListPage {
         super(driver);
     }
 
-    public boolean isEmpty() {
+    public boolean isMailListEmpty() {
         try {
             driver.findElement(By.className(CLASS_NAME_EMPTY));
             return true;
@@ -55,7 +55,7 @@ public class SentMailsPage extends MailListPage {
     }
 
     public SentMailsPage clearSent(){
-        if (!isEmpty()) {
+        if (!isMailListEmpty()) {
             ((SentMailsPage) checkAllCheckboxes()).clickDelete().clickConfirmDelete();
         }
         return this;

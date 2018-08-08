@@ -1,4 +1,4 @@
-package com.epam.atm.homework5.pf;
+package com.epam.atm.homework5.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,9 +9,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.regex.Pattern;
 
-public abstract class GmailPage extends AbstractPagePF {
+public abstract class GmailPage extends AbstractPage {
 
+    protected static final String XPATH_DRAFTS_LINK = "//a[@href=\"https://mail.google.com/mail/u/0/#drafts\"]";
     public static final By SELECTED_SENT_DRAFT_LOCATOR = By.xpath("//div[@class='aim ain']/div/div/div[2]/span/a");
+    private static final String LINK_TEXT_SENT_MAIL = "Sent Mail";
 
     @FindBy(xpath = "//span[@class='gb_8a gbii']")
     WebElement accountIcon;

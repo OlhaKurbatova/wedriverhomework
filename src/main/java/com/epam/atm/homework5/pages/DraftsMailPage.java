@@ -1,4 +1,4 @@
-package com.epam.atm.homework5.pf;
+package com.epam.atm.homework5.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -22,7 +22,7 @@ public class DraftsMailPage extends MailListPage {
         super(driver);
     }
 
-    public boolean isEmpty() {
+    public boolean isMailListEmpty() {
         waitForElementVisible(draftsLink);
         return !DRAFTS_TEXT_PATTERN.matcher(draftsLink.getText()).find();
     }
@@ -36,7 +36,7 @@ public class DraftsMailPage extends MailListPage {
     }
 
     public DraftsMailPage clearDrafts() {
-        if (!isEmpty()) {
+        if (!isMailListEmpty()) {
             ((DraftsMailPage) checkAllCheckboxes()).clickDiscardDrafts();
         }
         return this;

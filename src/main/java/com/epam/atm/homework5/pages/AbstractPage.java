@@ -1,4 +1,4 @@
-package com.epam.atm.homework5.pf;
+package com.epam.atm.homework5.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,11 +7,11 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public abstract class AbstractPagePF {
+public abstract class AbstractPage {
     protected static final int WAIT_FOR_ELEMENT_TIMEOUT_SECONDS = 30;
     protected WebDriver driver;
 
-    protected AbstractPagePF(WebDriver driver) {
+    protected AbstractPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
