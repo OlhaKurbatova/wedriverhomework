@@ -1,5 +1,6 @@
 package com.epam.atm.homework5.pages;
 
+import com.epam.atm.homework5.ElementActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,18 +8,22 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
 import java.util.regex.Pattern;
+
+import static com.epam.atm.homework5.ElementActions.WAIT_FOR_ELEMENT_TIMEOUT_SECONDS;
 
 public abstract class GmailPage extends AbstractPage {
 
     protected static final String XPATH_DRAFTS_LINK = "//a[@href=\"https://mail.google.com/mail/u/0/#drafts\"]";
     public static final By SELECTED_SENT_DRAFT_LOCATOR = By.xpath("//div[@class='aim ain']/div/div/div[2]/span/a");
     private static final String LINK_TEXT_SENT_MAIL = "Sent Mail";
+    public static final By XPATH_DRAFTS_SHIELD = By.xpath("//div[@class='Kj-JD-Jh']");
 
-    @FindBy(xpath = "//span[@class='gb_8a gbii']")
+    @FindBy(xpath = "//div[@class='gb_Pc gb_ib gb_Qg gb_R']")
     WebElement accountIcon;
 
-    @FindBy(xpath = "//a[@class='gb_za gb_Zf gb_6f gb_Ke gb_Eb']")
+    @FindBy(xpath = "//a[@class='gb_za gb_3f gb_9f gb_Oe gb_Fb']")
     WebElement logOutBtn;
 
     @FindBy(linkText = "Sent Mail")
@@ -38,38 +43,38 @@ public abstract class GmailPage extends AbstractPage {
     }
 
     public PasswordPage signOut() {
-        waitForElementVisible(accountIcon);
-        accountIcon.click();
-        waitForElementVisible(logOutBtn);
-        logOutBtn.click();
+        ElementActions.waitForVisibleAndClick(driver, accountIcon);
+        ElementActions.waitForVisibleAndClick(driver, logOutBtn);
         return new PasswordPage(driver);
     }
 
     public SentMailsPage clickSentLink() {
-        waitForElementVisible(sentLink);
-        sentLink.click();
+        ElementActions.waitForVisibleAndClick(driver, sentLink);
         new WebDriverWait(driver, WAIT_FOR_ELEMENT_TIMEOUT_SECONDS).until(
                 ExpectedConditions.textToBe(SELECTED_SENT_DRAFT_LOCATOR, LINK_TEXT_SENT_MAIL));
         return new SentMailsPage(driver);
     }
 
     public DraftsMailPage clickDrafts() {
-        waitForElementVisible(draftsLink);
-        draftsLink.click();
+        List<WebElement> webElements = driver.findElements(XPATH_DRAFTS_SHIELD);
+        if (!webElements.isEmpty()) {
+            new WebDriverWait(driver, ElementActions.WAIT_FOR_ELEMENT_TIMEOUT_SECONDS).until(
+                    ExpectedConditions.invisibilityOfElementLocated(XPATH_DRAFTS_SHIELD));
+        }
+
+        ElementActions.waitForVisibleAndClick(driver, draftsLink);
         new WebDriverWait(driver, WAIT_FOR_ELEMENT_TIMEOUT_SECONDS).until(
                 ExpectedConditions.textMatches(SELECTED_SENT_DRAFT_LOCATOR, Pattern.compile("Drafts")));
         return new DraftsMailPage(driver);
     }
 
     public BinMailPage clickBin() {
-        waitForElementVisible(binLink);
-        binLink.click();
+        ElementActions.waitForVisibleAndClick(driver, binLink);
         return new BinMailPage(driver);
     }
 
     public ComposePopUpPage clickCompose() {
-        waitForElementVisible(composeBtn);
-        composeBtn.click();
+        ElementActions.waitForVisibleAndClick(driver, composeBtn);
         return new ComposePopUpPage(driver);
     }
 }

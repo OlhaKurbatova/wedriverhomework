@@ -1,5 +1,6 @@
 package com.epam.atm.homework5.pages;
 
+import com.epam.atm.homework5.ElementActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -8,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class BinMailPage extends MailListPage {
 
-    private static final String LINK_TEXT_NO_CONVERSATIONS_IN_BIN = "No conversations in Bin.";
+    private static final String XPATH_TEXT_NO_CONVERSATIONS_IN_BIN = "//td[text()='No conversations in Bin.']";
 
     @FindBy(xpath = "//div[text()='Delete forever']")
     WebElement deleteForeverBtn;
@@ -18,12 +19,7 @@ public class BinMailPage extends MailListPage {
     }
 
     public boolean isMailListEmpty() {
-        try {
-            driver.findElement(By.linkText(LINK_TEXT_NO_CONVERSATIONS_IN_BIN));
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }
+        return !driver.findElements(By.xpath(XPATH_TEXT_NO_CONVERSATIONS_IN_BIN)).isEmpty();
     }
 
     public BinMailPage clearBin() {
@@ -34,8 +30,7 @@ public class BinMailPage extends MailListPage {
     }
 
     public BinMailPage clickDeleteForever() {
-        waitForElementVisible(deleteForeverBtn);
-        deleteForeverBtn.click();
+        ElementActions.waitForVisibleAndClick(driver, deleteForeverBtn);
         return this;
     }
 }

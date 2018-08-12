@@ -4,14 +4,10 @@ import com.epam.atm.homework5.pages.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import java.util.concurrent.TimeUnit;
 
 public class GmailSendMailFromDraftsTest {
 
@@ -28,23 +24,13 @@ public class GmailSendMailFromDraftsTest {
 
     @BeforeClass(description = "Start browser")
     public void startBrowser() {
-        //alternative way to set environmental variable at runtime
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-        ChromeOptions options = new ChromeOptions();
-        // Maximize browser window via options, just an example
-        options.addArguments("start-maximized");
-
-        driver = new ChromeDriver(options);
-
-        // setting standard timeout
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver = DriverManager.getDriver();
     }
 
     @Test
     public void sendMailFromDraftsScenarioTest() {
         logger.info("Step 1. Open home page");
         HomePage homePage = new HomePage(driver);
-        homePage.open();
 
         logger.info("Step 2. Click login button and fill in login: " + USER_LOGIN);
         LogInPage logInPage = homePage.clickLogin().fillLoginField(USER_LOGIN);
@@ -67,8 +53,7 @@ public class GmailSendMailFromDraftsTest {
 
         logger.info("Step 8. Open compose box, fill in email details and close compose box");
         ComposePopUpPage composePopUpPage = binMailPage.clickCompose();
-        composePopUpPage.fillToField(TO).fillSubjectField(SUBJECT).fillMessageField(MESSAGE);
-        composePopUpPage.clickCloseIcon();
+        composePopUpPage.fillToField(TO).fillSubjectField(SUBJECT).fillMessageField(MESSAGE).clickCloseIcon();
 
         logger.info("Step 9. Open drafts and find email by subject " + SUBJECT);
         draftsMailPage = composePopUpPage.clickDrafts();
@@ -82,13 +67,14 @@ public class GmailSendMailFromDraftsTest {
         sentMailsPage = draftsMailPage.clickSentLink();
         sentMailsPage.waitUntilLetterVisibleBySubject(SUBJECT);
         logger.info("Step 13. Assert that drafts is empty");
-        Assert.assertTrue(!sentMailsPage.isMailListEmpty(), "Sent folder is empty after sending email");
+        Assert.assertTrue(sentMailsPage.isMailListEmpty(), "Sent folder is empty after sending email");
         logger.info("Step 14. Sign out");
+
         sentMailsPage.signOut();
     }
 
     @AfterClass(description = "Stop Browser")
     public void stopBrowser() {
-        driver.quit();
+        DriverManager.closeDriver();
     }
 }

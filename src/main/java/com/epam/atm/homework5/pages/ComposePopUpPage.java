@@ -1,5 +1,6 @@
 package com.epam.atm.homework5.pages;
 
+import com.epam.atm.homework5.ElementActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -35,23 +36,17 @@ public class ComposePopUpPage extends GmailPage {
     }
 
     public ComposePopUpPage fillToField(String to) {
-        waitForElementVisible(toField);
-        toField.clear();
-        toField.sendKeys(to);
+        ElementActions.waitForVisibleAndType(driver, toField, to);
         return this;
     }
 
     public ComposePopUpPage fillSubjectField(String subject) {
-        waitForElementVisible(subjectField);
-        subjectField.clear();
-        subjectField.sendKeys(subject);
+        ElementActions.waitForVisibleAndType(driver, subjectField, subject);
         return this;
     }
 
     public ComposePopUpPage fillMessageField(String message) {
-        waitForElementVisible(messageField);
-        messageField.clear();
-        messageField.sendKeys(message);
+        ElementActions.waitForVisibleAndType(driver, messageField, message);
         return this;
     }
 
@@ -66,12 +61,11 @@ public class ComposePopUpPage extends GmailPage {
     }
 
     public void clickCloseIcon() {
-        waitForElementVisible(closeIcon);
-        closeIcon.click();
+        ElementActions.waitForVisibleAndClick(driver, closeIcon);
     }
 
     public String getPopUpEmailMessageValue() {
-        waitForElementVisible(popupMessageField);
+        ElementActions.waitForVisible(driver, popupMessageField);
         return popupMessageField.getText();
     }
 }

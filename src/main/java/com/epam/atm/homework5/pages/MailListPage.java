@@ -18,7 +18,9 @@ public abstract class MailListPage extends GmailPage {
     public MailListPage checkAllCheckboxes() {
         List<WebElement> checkboxes = driver.findElements(By.xpath(XPATH_CHECKBOX));
         for (WebElement checkbox : checkboxes) {
-            checkbox.click();
+            if(checkbox.isDisplayed()){
+                checkbox.click();
+            }
         }
         return this;
     }

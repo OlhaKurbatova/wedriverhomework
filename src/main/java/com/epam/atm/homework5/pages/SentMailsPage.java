@@ -1,7 +1,7 @@
 package com.epam.atm.homework5.pages;
 
+import com.epam.atm.homework5.ElementActions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,18 +23,11 @@ public class SentMailsPage extends MailListPage {
     }
 
     public boolean isMailListEmpty() {
-        try {
-            driver.findElement(By.className(CLASS_NAME_EMPTY));
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }
+        return !driver.findElements(By.className(CLASS_NAME_EMPTY)).isEmpty();
     }
 
-    public SentMailsPage waitUntilLetterVisibleBySubject(String subject){
-        By mailSubjectLocator = By.xpath(String.format(XPATH_SENT_SUBJECT, subject));
-        waitForElementByLocatorVisible(mailSubjectLocator);
-        driver.findElement(mailSubjectLocator).click();
+    public SentMailsPage waitUntilLetterVisibleBySubject(String subject) {
+        ElementActions.waitForVisibleByLocator(driver, By.xpath(String.format(XPATH_SENT_SUBJECT, subject)));
         return this;
     }
 
@@ -48,13 +41,12 @@ public class SentMailsPage extends MailListPage {
     }
 
     public SentMailsPage clickConfirmDelete() {
-        waitForElementVisible(confirmDeleteBtn);
-        confirmDeleteBtn.click();
-        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.className(CLASS_NAME_EMPTY)));
+        ElementActions.waitForVisibleAndClick(driver, confirmDeleteBtn);
+        new WebDriverWait(driver, ElementActions.WAIT_FOR_ELEMENT_TIMEOUT_SECONDS).until(ExpectedConditions.visibilityOfElementLocated(By.className(CLASS_NAME_EMPTY)));
         return this;
     }
 
-    public SentMailsPage clearSent(){
+    public SentMailsPage clearSent() {
         if (!isMailListEmpty()) {
             ((SentMailsPage) checkAllCheckboxes()).clickDelete().clickConfirmDelete();
         }

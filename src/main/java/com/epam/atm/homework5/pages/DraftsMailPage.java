@@ -1,5 +1,6 @@
 package com.epam.atm.homework5.pages;
 
+import com.epam.atm.homework5.ElementActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,7 +8,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
 import java.util.regex.Pattern;
+
+import static com.epam.atm.homework5.ElementActions.WAIT_FOR_ELEMENT_TIMEOUT_SECONDS;
 
 public class DraftsMailPage extends MailListPage {
     public static final Pattern DRAFTS_TEXT_PATTERN = Pattern.compile("\\(\\d\\)");
@@ -23,13 +27,12 @@ public class DraftsMailPage extends MailListPage {
     }
 
     public boolean isMailListEmpty() {
-        waitForElementVisible(draftsLink);
+        ElementActions.waitForVisible(driver, draftsLink);
         return !DRAFTS_TEXT_PATTERN.matcher(draftsLink.getText()).find();
     }
 
     public DraftsMailPage clickDiscardDrafts() {
-        waitForElementVisible(discardDraftsBtn);
-        discardDraftsBtn.click();
+        ElementActions.waitForVisibleAndClick(driver, discardDraftsBtn);
         new WebDriverWait(driver, WAIT_FOR_ELEMENT_TIMEOUT_SECONDS).until(
                 ExpectedConditions.not(ExpectedConditions.textMatches(DRAFTS_LINK_LOCATOR, DRAFTS_TEXT_PATTERN)));
         return this;
@@ -43,9 +46,7 @@ public class DraftsMailPage extends MailListPage {
     }
 
     public ComposePopUpPage findMailBySubjectAndClick(String subject) {
-        By mailSubjectLocator = By.xpath(String.format(XPATH_DRAFTED_SUBJECT, subject));
-        waitForElementByLocatorVisible(mailSubjectLocator);
-        driver.findElement(mailSubjectLocator).click();
+        ElementActions.waitForVisibleByLocatorAndClick(driver, By.xpath(String.format(XPATH_DRAFTED_SUBJECT, subject)));
         return new ComposePopUpPage(driver);
     }
 }

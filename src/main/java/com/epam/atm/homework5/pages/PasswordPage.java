@@ -1,5 +1,6 @@
 package com.epam.atm.homework5.pages;
 
+import com.epam.atm.homework5.ElementActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,15 +19,12 @@ public class PasswordPage extends AbstractPage {
 
 
     public PasswordPage fillPasswordField(String password) {
-        waitForElementVisible(passwordFieldInput);
-        passwordFieldInput.clear();
-        passwordFieldInput.sendKeys(password);
+        ElementActions.waitForVisibleAndType(driver, passwordFieldInput, password);
         return this;
     }
 
     public InboxPage clickNextBtn() {
-        waitForElementVisible(passwordNextButton);
-        passwordNextButton.click();
+        ElementActions.waitForVisibleAndClick(driver, passwordNextButton);
         return new InboxPage(driver);
     }
 }

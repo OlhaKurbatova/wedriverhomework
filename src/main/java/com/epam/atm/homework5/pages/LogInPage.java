@@ -1,5 +1,6 @@
 package com.epam.atm.homework5.pages;
 
+import com.epam.atm.homework5.ElementActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,14 +19,11 @@ public class LogInPage extends AbstractPage {
     }
 
     public LogInPage fillLoginField(String user) {
-        waitForElementVisible(loginFieldInput);
-        loginFieldInput.clear();
-        loginFieldInput.sendKeys(user);
+        ElementActions.waitForVisibleAndType(driver, loginFieldInput, user);
         return this;
     }
     public PasswordPage clickNextBtn() {
-        waitForElementVisible(loginNextButton);
-        loginNextButton.click();
+        ElementActions.waitForVisibleAndClick(driver, loginNextButton);
         return new PasswordPage(driver);
     }
 }
