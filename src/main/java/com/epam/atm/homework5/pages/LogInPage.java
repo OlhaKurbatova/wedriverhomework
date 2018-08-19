@@ -19,11 +19,11 @@ public class LogInPage extends AbstractPage {
     }
 
     public LogInPage fillLoginField(String user) {
-        ElementActions.waitForVisibleAndType(driver, loginFieldInput, user);
+        ElementActions.type(driver, loginFieldInput, user);
         return this;
     }
     public PasswordPage clickNextBtn() {
-        ElementActions.waitForVisibleAndClick(driver, loginNextButton);
+        ElementActions.click(driver, loginNextButton);
         return new PasswordPage(driver);
     }
 }

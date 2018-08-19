@@ -19,12 +19,12 @@ public class PasswordPage extends AbstractPage {
 
 
     public PasswordPage fillPasswordField(String password) {
-        ElementActions.waitForVisibleAndType(driver, passwordFieldInput, password);
+        ElementActions.type(driver, passwordFieldInput, password);
         return this;
     }
 
     public InboxPage clickNextBtn() {
-        ElementActions.waitForVisibleAndClick(driver, passwordNextButton);
+        ElementActions.click(driver, passwordNextButton);
         return new InboxPage(driver);
     }
 }

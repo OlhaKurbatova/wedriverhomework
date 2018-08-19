@@ -8,17 +8,27 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.util.concurrent.TimeUnit;
 
 public class DriverManager {
-    private static WebDriver driver;
+
+    private WebDriver driver;
     private final static int TIMEOUT = 30;
     private static final int CHROME = 0;
     private static final int FIREFOX = 1;
     private final static int BROWSER = CHROME;
     private static final String URL = "https://www.google.com/intl/ru/gmail/about/#";
 
+    private static DriverManager INSTANCE;
+
     private DriverManager() {
     }
 
-    public static WebDriver getDriver() {
+    public static DriverManager getInstance(){
+        if(INSTANCE == null){
+            INSTANCE = new DriverManager();
+        }
+        return INSTANCE;
+    }
+
+    public WebDriver getDriver() {
         if (driver == null) {
             switch (BROWSER) {
                 case FIREFOX:
@@ -38,7 +48,7 @@ public class DriverManager {
         return driver;
     }
 
-    public static void closeDriver() {
+    public void closeDriver() {
         driver.quit();
         driver = null;
     }

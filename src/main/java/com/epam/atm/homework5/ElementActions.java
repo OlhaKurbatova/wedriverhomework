@@ -1,10 +1,14 @@
 package com.epam.atm.homework5;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static com.epam.atm.homework5.utils.Screenshoter.takeScreenshot;
 
 public class ElementActions {
 
@@ -14,24 +18,46 @@ public class ElementActions {
         new WebDriverWait(driver, WAIT_FOR_ELEMENT_TIMEOUT_SECONDS).until(ExpectedConditions.visibilityOf(element));
     }
 
-    public static void waitForVisibleAndClick(WebDriver driver, WebElement element) {
-        new WebDriverWait(driver, WAIT_FOR_ELEMENT_TIMEOUT_SECONDS).until(ExpectedConditions.visibilityOf(element));
-        element.click();
-    }
-
-    public static void waitForVisibleAndType(WebDriver driver, WebElement element, String keys) {
-        new WebDriverWait(driver, WAIT_FOR_ELEMENT_TIMEOUT_SECONDS).until(ExpectedConditions.visibilityOf(element));
-        element.clear();
-        element.sendKeys(keys);
-    }
-
     public static void waitForVisibleByLocator(WebDriver driver, By locator) {
         new WebDriverWait(driver, WAIT_FOR_ELEMENT_TIMEOUT_SECONDS).until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    public static void waitForVisibleByLocatorAndClick(WebDriver driver, By locator) {
-        new WebDriverWait(driver, WAIT_FOR_ELEMENT_TIMEOUT_SECONDS).until(ExpectedConditions.visibilityOfElementLocated(locator));
-        driver.findElement(locator).click();
+    public static void clickByLocator(WebDriver driver, By locator) {
+        click(driver, driver.findElement(locator));
     }
 
+    public static void highlightElement(WebElement element, WebDriver driver) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='3px solid green'", element);
+    }
+
+    public static void unHighlightElement(WebElement element, WebDriver driver) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='0px'", element);
+    }
+
+    public static void click(WebDriver driver, final WebElement element) {
+        waitForVisible(driver, element);
+        System.out.println("Clicking element '" + element.getText());
+        highlightElement(element, driver);
+        takeScreenshot();
+        unHighlightElement(element, driver);
+        element.click();
+    }
+
+    public static void type(WebDriver driver, final WebElement element, String text) {
+        waitForVisible(driver, element);
+        element.clear();
+        highlightElement(element, driver);
+        System.out.println("Typing text '" + text + "' to input form '" + element.getAttribute("name"));
+        element.sendKeys(text);
+        takeScreenshot();
+        unHighlightElement(element, driver);
+    }
+
+    public static void dragAndDrop(WebDriver driver, WebElement element, WebElement target) {
+        waitForVisible(driver, element);
+        waitForVisible(driver, target);
+        takeScreenshot();
+        System.out.println("Dragging element '" + element.getText() + "to '" + target.getText());
+        (new Actions(driver)).dragAndDrop(element, target).perform();
+    }
 }

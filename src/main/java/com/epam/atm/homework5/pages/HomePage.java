@@ -15,7 +15,7 @@ public class HomePage extends AbstractPage {
     }
 
     public LogInPage clickLogin() {
-        ElementActions.waitForVisibleAndClick(driver, loginButton);
+        ElementActions.click(driver, loginButton);
         return new LogInPage(driver);
     }
 }

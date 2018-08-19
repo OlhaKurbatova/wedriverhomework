@@ -30,7 +30,7 @@ public class BinMailPage extends MailListPage {
     }
 
     public BinMailPage clickDeleteForever() {
-        ElementActions.waitForVisibleAndClick(driver, deleteForeverBtn);
+        ElementActions.click(driver, deleteForeverBtn);
         return this;
     }
 }

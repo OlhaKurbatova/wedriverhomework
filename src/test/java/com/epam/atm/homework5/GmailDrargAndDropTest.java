@@ -4,12 +4,15 @@ import com.epam.atm.homework5.pages.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class GmailSendMailFromDraftsTest {
+import java.util.List;
+
+public class GmailDrargAndDropTest {
 
     private static final Logger logger = LogManager.getLogger();
 
@@ -28,7 +31,7 @@ public class GmailSendMailFromDraftsTest {
     }
 
     @Test
-    public void sendMailFromDraftsScenarioTest() {
+    public void dragAndDropTest() {
         logger.info("Step 1. Open home page");
         HomePage homePage = new HomePage(driver);
 
@@ -41,33 +44,27 @@ public class GmailSendMailFromDraftsTest {
 
         logger.info("Step 5. Delete sent emails if not empty");
         SentMailsPage sentMailsPage = inboxPage.clickSentLink();
-        sentMailsPage.clearSent();
 
-        logger.info("Step 6. Delete drafts emails if not empty");
-        DraftsMailPage draftsMailPage = sentMailsPage.clickDrafts();
-        draftsMailPage.clearDrafts();
+        logger.info("Step 6. Check whether sent list is empty or not");
+        if(sentMailsPage.isMailListEmpty()){
+            logger.info("Step 6a. If list is empty, send email and refresh");
+            ComposePopUpPage composePopUpPage = sentMailsPage.clickCompose();
+            composePopUpPage.fillToField(TO).fillSubjectField(SUBJECT).fillMessageField(MESSAGE).clickSendFromKeys();
+            while (sentMailsPage.isMailListEmpty()){
+                sentMailsPage.clickRefresh();
+            }
+        }
+        
+        logger.info("Step 7. Drag and drop feirst email to bin link and conform deletion");
+        List<WebElement> emails = sentMailsPage.getEmailsList();
+        int sizeBeforeDragAndDropDelete = emails.size();
+        sentMailsPage.dragAndDropFirstEmailToBinAndConfirm(emails);
+        sentMailsPage.clickRefresh();
+        List<WebElement> emailsAfterDelete = sentMailsPage.getEmailsList();
+        int sizeAfterDragAndDropDelete = emailsAfterDelete.size();
 
-        logger.info("Step 7. Clear bin if not empty");
-        BinMailPage binMailPage = draftsMailPage.clickBin();
-        binMailPage.clearBin();
-
-        logger.info("Step 8. Open compose box, fill in email details and close compose box");
-        ComposePopUpPage composePopUpPage = binMailPage.clickCompose();
-        composePopUpPage.fillToField(TO).fillSubjectField(SUBJECT).fillMessageField(MESSAGE).clickCloseIcon();
-
-        logger.info("Step 9. Open drafts and find email by subject " + SUBJECT);
-        draftsMailPage = composePopUpPage.clickDrafts();
-        composePopUpPage = draftsMailPage.findMailBySubjectAndClick(SUBJECT);
-        logger.info("Step 10. Assert that message email matches with constant");
-        Assert.assertEquals(composePopUpPage.getPopUpEmailMessageValue(), MESSAGE, "'message' not matches");
-        logger.info("Step 11. Click send");
-        composePopUpPage.clickSend();
-
-        logger.info("Step 12. Open drafts and wait until mail is removed from drafts list");
-        sentMailsPage = draftsMailPage.clickSentLink();
-        sentMailsPage.waitUntilLetterVisibleBySubject(SUBJECT);
-        logger.info("Step 13. Assert that drafts is empty");
-        Assert.assertTrue(sentMailsPage.isMailListEmpty(), "Sent folder is empty after sending email");
+        logger.info("Step 8. Assert that count of emails before and after drag and drop deletion is not equals");
+        Assert.assertNotEquals(sizeBeforeDragAndDropDelete, sizeAfterDragAndDropDelete, "Email didn't delete");
 
         logger.info("Step 14. Sign out");
         sentMailsPage.signOut();

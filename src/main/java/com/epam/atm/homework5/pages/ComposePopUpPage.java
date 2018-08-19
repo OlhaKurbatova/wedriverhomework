@@ -2,8 +2,10 @@ package com.epam.atm.homework5.pages;
 
 import com.epam.atm.homework5.ElementActions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -36,17 +38,17 @@ public class ComposePopUpPage extends GmailPage {
     }
 
     public ComposePopUpPage fillToField(String to) {
-        ElementActions.waitForVisibleAndType(driver, toField, to);
+        ElementActions.type(driver, toField, to);
         return this;
     }
 
     public ComposePopUpPage fillSubjectField(String subject) {
-        ElementActions.waitForVisibleAndType(driver, subjectField, subject);
+        ElementActions.type(driver, subjectField, subject);
         return this;
     }
 
     public ComposePopUpPage fillMessageField(String message) {
-        ElementActions.waitForVisibleAndType(driver, messageField, message);
+        ElementActions.type(driver, messageField, message);
         return this;
     }
 
@@ -56,12 +58,15 @@ public class ComposePopUpPage extends GmailPage {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        sendBtn.click();
-        new WebDriverWait(driver, 30).until(ExpectedConditions.not(ExpectedConditions.textMatches(By.xpath(XPATH_DRAFTS_LINK), Pattern.compile("\\(\\d\\)"))));
+        ElementActions.click(driver, sendBtn);
+    }
+
+    public void clickSendFromKeys(){
+        new Actions(driver).sendKeys(Keys.CONTROL, Keys.ENTER).build().perform();
     }
 
     public void clickCloseIcon() {
-        ElementActions.waitForVisibleAndClick(driver, closeIcon);
+        ElementActions.click(driver, closeIcon);
     }
 
     public String getPopUpEmailMessageValue() {

@@ -8,7 +8,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.List;
 import java.util.regex.Pattern;
 
 import static com.epam.atm.homework5.ElementActions.WAIT_FOR_ELEMENT_TIMEOUT_SECONDS;
@@ -32,7 +31,7 @@ public class DraftsMailPage extends MailListPage {
     }
 
     public DraftsMailPage clickDiscardDrafts() {
-        ElementActions.waitForVisibleAndClick(driver, discardDraftsBtn);
+        ElementActions.click(driver, discardDraftsBtn);
         new WebDriverWait(driver, WAIT_FOR_ELEMENT_TIMEOUT_SECONDS).until(
                 ExpectedConditions.not(ExpectedConditions.textMatches(DRAFTS_LINK_LOCATOR, DRAFTS_TEXT_PATTERN)));
         return this;
@@ -46,7 +45,7 @@ public class DraftsMailPage extends MailListPage {
     }
 
     public ComposePopUpPage findMailBySubjectAndClick(String subject) {
-        ElementActions.waitForVisibleByLocatorAndClick(driver, By.xpath(String.format(XPATH_DRAFTED_SUBJECT, subject)));
+        ElementActions.clickByLocator(driver, By.xpath(String.format(XPATH_DRAFTED_SUBJECT, subject)));
         return new ComposePopUpPage(driver);
     }
 }

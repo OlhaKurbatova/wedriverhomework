@@ -43,13 +43,13 @@ public abstract class GmailPage extends AbstractPage {
     }
 
     public PasswordPage signOut() {
-        ElementActions.waitForVisibleAndClick(driver, accountIcon);
-        ElementActions.waitForVisibleAndClick(driver, logOutBtn);
+        ElementActions.click(driver, accountIcon);
+        ElementActions.click(driver, logOutBtn);
         return new PasswordPage(driver);
     }
 
     public SentMailsPage clickSentLink() {
-        ElementActions.waitForVisibleAndClick(driver, sentLink);
+        ElementActions.click(driver, sentLink);
         new WebDriverWait(driver, WAIT_FOR_ELEMENT_TIMEOUT_SECONDS).until(
                 ExpectedConditions.textToBe(SELECTED_SENT_DRAFT_LOCATOR, LINK_TEXT_SENT_MAIL));
         return new SentMailsPage(driver);
@@ -62,19 +62,19 @@ public abstract class GmailPage extends AbstractPage {
                     ExpectedConditions.invisibilityOfElementLocated(XPATH_DRAFTS_SHIELD));
         }
 
-        ElementActions.waitForVisibleAndClick(driver, draftsLink);
+        ElementActions.click(driver, draftsLink);
         new WebDriverWait(driver, WAIT_FOR_ELEMENT_TIMEOUT_SECONDS).until(
                 ExpectedConditions.textMatches(SELECTED_SENT_DRAFT_LOCATOR, Pattern.compile("Drafts")));
         return new DraftsMailPage(driver);
     }
 
     public BinMailPage clickBin() {
-        ElementActions.waitForVisibleAndClick(driver, binLink);
+        ElementActions.click(driver, binLink);
         return new BinMailPage(driver);
     }
 
     public ComposePopUpPage clickCompose() {
-        ElementActions.waitForVisibleAndClick(driver, composeBtn);
+        ElementActions.click(driver, composeBtn);
         return new ComposePopUpPage(driver);
     }
 }
