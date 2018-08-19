@@ -54,7 +54,7 @@ public class GmailDrargAndDropTest {
                 sentMailsPage.clickRefresh();
             }
         }
-        
+
         logger.info("Step 7. Drag and drop feirst email to bin link and conform deletion");
         List<WebElement> emails = sentMailsPage.getEmailsList();
         int sizeBeforeDragAndDropDelete = emails.size();
