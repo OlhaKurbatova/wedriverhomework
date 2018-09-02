@@ -1,6 +1,6 @@
-package com.epam.atm.homework5.utils;
+package com.epam.atm.homework5.tools;
 
-import com.epam.atm.homework5.DriverManager;
+import com.epam.atm.homework5.drivermanagers.DriverManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;

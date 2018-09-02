@@ -1,6 +1,6 @@
 package com.epam.atm.homework5.pages;
 
-import com.epam.atm.homework5.ElementActions;
+import com.epam.atm.homework5.tools.ElementActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.regex.Pattern;
 
-import static com.epam.atm.homework5.ElementActions.WAIT_FOR_ELEMENT_TIMEOUT_SECONDS;
+import static com.epam.atm.homework5.tools.ElementActions.WAIT_FOR_ELEMENT_TIMEOUT_SECONDS;
 
 public class DraftsMailPage extends MailListPage {
     public static final Pattern DRAFTS_TEXT_PATTERN = Pattern.compile("\\(\\d\\)");

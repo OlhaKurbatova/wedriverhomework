@@ -1,5 +1,8 @@
 package com.epam.atm.homework5;
 
+import com.epam.atm.homework5.businessobjects.EmailObject;
+import com.epam.atm.homework5.businessobjects.GmailUser;
+import com.epam.atm.homework5.drivermanagers.DriverManager;
 import com.epam.atm.homework5.pages.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,18 +16,15 @@ public class GmailSendMailFromDraftsTest {
 
     private static final Logger logger = LogManager.getLogger();
 
-    private static final String USER_LOGIN = "tyled6@gmail.com";
-    private static final String USER_PASSWORD = "qwerty23";
-
-    private static final String TO = "ok130493@gmail.com";
-    private static final String SUBJECT = "hello message";
-    private static final String MESSAGE = "hi, how?";
-
     private WebDriver driver;
+    private GmailUser userBObject;
+    private EmailObject emailBObject;
 
     @BeforeClass(description = "Start browser")
     public void startBrowser() {
         driver = DriverManager.getInstance().getDriver();
+        userBObject = new GmailUser();
+        emailBObject = new EmailObject();
     }
 
     @Test
@@ -32,12 +32,12 @@ public class GmailSendMailFromDraftsTest {
         logger.info("Step 1. Open home page");
         HomePage homePage = new HomePage(driver);
 
-        logger.info("Step 2. Click login button and fill in login: " + USER_LOGIN);
-        LogInPage logInPage = homePage.clickLogin().fillLoginField(USER_LOGIN);
+        logger.info("Step 2. Click login button and fill in login: " + userBObject.getLogin());
+        LogInPage logInPage = homePage.clickLogin().fillLoginField(userBObject.getLogin());
         logger.info("Step 3. Click next");
         PasswordPage passwordPage = logInPage.clickNextBtn();
-        logger.info("Step 4. Fill in password: " + USER_PASSWORD + " and click next");
-        InboxPage inboxPage = passwordPage.fillPasswordField(USER_PASSWORD).clickNextBtn();
+        logger.info("Step 4. Fill in password: " + userBObject.getPassword() + " and click next");
+        InboxPage inboxPage = passwordPage.fillPasswordField(userBObject.getPassword()).clickNextBtn();
 
         logger.info("Step 5. Delete sent emails if not empty");
         SentMailsPage sentMailsPage = inboxPage.clickSentLink();
@@ -53,19 +53,23 @@ public class GmailSendMailFromDraftsTest {
 
         logger.info("Step 8. Open compose box, fill in email details and close compose box");
         ComposePopUpPage composePopUpPage = binMailPage.clickCompose();
-        composePopUpPage.fillToField(TO).fillSubjectField(SUBJECT).fillMessageField(MESSAGE).clickCloseIcon();
+        composePopUpPage.
+                fillToField(emailBObject.getToValue()).
+                fillSubjectField(emailBObject.getSubjectValue()).
+                fillMessageField(emailBObject.getMessageValue()).
+                clickCloseIcon();
 
-        logger.info("Step 9. Open drafts and find email by subject " + SUBJECT);
+        logger.info("Step 9. Open drafts and find email by subject " + emailBObject.getSubjectValue());
         draftsMailPage = composePopUpPage.clickDrafts();
-        composePopUpPage = draftsMailPage.findMailBySubjectAndClick(SUBJECT);
+        composePopUpPage = draftsMailPage.findMailBySubjectAndClick(emailBObject.getSubjectValue());
         logger.info("Step 10. Assert that message email matches with constant");
-        Assert.assertEquals(composePopUpPage.getPopUpEmailMessageValue(), MESSAGE, "'message' not matches");
+        Assert.assertEquals(composePopUpPage.getPopUpEmailMessageValue(), emailBObject.getMessageValue(), "'message' not matches");
         logger.info("Step 11. Click send");
         composePopUpPage.clickSend();
 
         logger.info("Step 12. Open drafts and wait until mail is removed from drafts list");
         sentMailsPage = draftsMailPage.clickSentLink();
-        sentMailsPage.waitUntilLetterVisibleBySubject(SUBJECT);
+        sentMailsPage.waitUntilLetterVisibleBySubject(emailBObject.getSubjectValue());
         logger.info("Step 13. Assert that drafts is empty");
         Assert.assertTrue(sentMailsPage.isMailListEmpty(), "Sent folder is empty after sending email");
 

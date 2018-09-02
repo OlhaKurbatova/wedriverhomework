@@ -1,4 +1,4 @@
-package com.epam.atm.homework5;
+package com.epam.atm.homework5.tools;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -8,7 +8,9 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static com.epam.atm.homework5.utils.Screenshoter.takeScreenshot;
+import static com.epam.atm.homework5.tools.JSHighlighter.highlightElement;
+import static com.epam.atm.homework5.tools.JSHighlighter.unHighlightElement;
+import static com.epam.atm.homework5.tools.Screenshoter.takeScreenshot;
 
 public class ElementActions {
 
@@ -24,14 +26,6 @@ public class ElementActions {
 
     public static void clickByLocator(WebDriver driver, By locator) {
         click(driver, driver.findElement(locator));
-    }
-
-    public static void highlightElement(WebElement element, WebDriver driver) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='3px solid green'", element);
-    }
-
-    public static void unHighlightElement(WebElement element, WebDriver driver) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='0px'", element);
     }
 
     public static void click(WebDriver driver, final WebElement element) {

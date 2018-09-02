@@ -1,16 +1,11 @@
 package com.epam.atm.homework5.pages;
 
-import com.epam.atm.homework5.ElementActions;
-import org.openqa.selenium.By;
+import com.epam.atm.homework5.tools.ElementActions;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.regex.Pattern;
 
 public class ComposePopUpPage extends GmailPage {
 
