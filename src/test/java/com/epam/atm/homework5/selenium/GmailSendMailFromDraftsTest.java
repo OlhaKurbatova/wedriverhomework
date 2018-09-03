@@ -1,9 +1,9 @@
-package com.epam.atm.homework5;
+package com.epam.atm.homework5.selenium;
 
-import com.epam.atm.homework5.businessobjects.EmailObject;
-import com.epam.atm.homework5.businessobjects.GmailUser;
-import com.epam.atm.homework5.drivermanagers.DriverManager;
-import com.epam.atm.homework5.pages.*;
+import com.epam.atm.homework5.selenium.businessobjects.EmailObject;
+import com.epam.atm.homework5.selenium.businessobjects.GmailUser;
+import com.epam.atm.homework5.selenium.drivermanagers.DriverManager;
+import com.epam.atm.homework5.selenium.pages.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;

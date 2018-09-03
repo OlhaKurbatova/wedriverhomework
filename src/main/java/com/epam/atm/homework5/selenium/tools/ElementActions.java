@@ -1,16 +1,15 @@
-package com.epam.atm.homework5.tools;
+package com.epam.atm.homework5.selenium.tools;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static com.epam.atm.homework5.tools.JSHighlighter.highlightElement;
-import static com.epam.atm.homework5.tools.JSHighlighter.unHighlightElement;
-import static com.epam.atm.homework5.tools.Screenshoter.takeScreenshot;
+import static com.epam.atm.homework5.selenium.tools.JSHighlighter.highlightElement;
+import static com.epam.atm.homework5.selenium.tools.JSHighlighter.unHighlightElement;
+import static com.epam.atm.homework5.selenium.tools.Screenshoter.takeScreenshot;
 
 public class ElementActions {
 

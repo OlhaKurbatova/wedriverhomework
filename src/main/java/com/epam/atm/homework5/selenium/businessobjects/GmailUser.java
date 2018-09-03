@@ -1,4 +1,4 @@
-package com.epam.atm.homework5.businessobjects;
+package com.epam.atm.homework5.selenium.businessobjects;
 
 public class GmailUser {
 

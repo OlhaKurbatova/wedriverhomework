@@ -1,4 +1,4 @@
-package com.epam.atm.homework5.tools;
+package com.epam.atm.homework5.selenium.tools;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;

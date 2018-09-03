@@ -1,6 +1,6 @@
-package com.epam.atm.homework5.pages;
+package com.epam.atm.homework5.selenium.pages;
 
-import com.epam.atm.homework5.tools.ElementActions;
+import com.epam.atm.homework5.selenium.tools.ElementActions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

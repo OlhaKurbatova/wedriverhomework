@@ -1,4 +1,4 @@
-package com.epam.atm.homework5.pages;
+package com.epam.atm.homework5.selenium.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

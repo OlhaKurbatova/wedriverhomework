@@ -1,4 +1,4 @@
-package com.epam.atm.homework5.drivermanagers;
+package com.epam.atm.homework5.selenium.drivermanagers;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
