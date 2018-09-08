@@ -16,4 +16,8 @@ public class EmailObject {
     public String getMessageValue() {
         return MESSAGE;
     }
+
+    public static EmailObject getDefaultEmail() {
+        return new EmailObject();
+    }
 }

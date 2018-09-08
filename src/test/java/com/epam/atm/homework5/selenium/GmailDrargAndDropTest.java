@@ -24,8 +24,8 @@ public class GmailDrargAndDropTest {
     @BeforeClass(description = "Start browser")
     public void startBrowser() {
         driver = DriverManager.getInstance().getDriver();
-        userBObject = new GmailUser();
-        emailBObject = new EmailObject();
+        userBObject = GmailUser.getDefaultUser();
+        emailBObject = EmailObject.getDefaultEmail();
     }
 
     @Test

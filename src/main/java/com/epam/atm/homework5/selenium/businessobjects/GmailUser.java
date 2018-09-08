@@ -13,4 +13,7 @@ public class GmailUser {
         return USER_PASSWORD;
     }
 
+    public static GmailUser getDefaultUser(){
+        return new GmailUser();
+    }
 }
