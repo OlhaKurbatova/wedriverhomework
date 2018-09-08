@@ -1,6 +1,7 @@
 package com.epam.atm.homework5.selenium.drivermanagers;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -38,16 +39,16 @@ public class DriverManager {
                     driver = new FirefoxDriver();
                     break;
                 case CHROME:
-//                    System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+                    System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
                     ChromeOptions options = new ChromeOptions();
                     // Maximize browser window via options, just an example
                     options.addArguments("start-maximized");
-//                    driver = new ChromeDriver(options);
-                    try {
-                        driver = new RemoteWebDriver(new URL("http://127.0.0.1:4444/wd/hub"), DesiredCapabilities.chrome());
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
+                    driver = new ChromeDriver(options);
+//                    try {
+//                        driver = new RemoteWebDriver(new URL("http://127.0.0.1:4444/wd/hub"), DesiredCapabilities.chrome());
+//                    } catch (MalformedURLException e) {
+//                        e.printStackTrace();
+//                    }
 
                     break;
             }

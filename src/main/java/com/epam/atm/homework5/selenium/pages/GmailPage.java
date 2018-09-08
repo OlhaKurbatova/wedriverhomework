@@ -20,10 +20,10 @@ public abstract class GmailPage extends AbstractPage {
     private static final String LINK_TEXT_SENT_MAIL = "Sent Mail";
     public static final By XPATH_DRAFTS_SHIELD = By.xpath("//div[@class='Kj-JD-Jh']");
 
-    @FindBy(xpath = "//div[@class='gb_Pc gb_ib gb_Qg gb_R']")
+    @FindBy(xpath = "//div[@class='gb_Pc gb_ib gb_Rg gb_R']")
     WebElement accountIcon;
 
-    @FindBy(xpath = "//a[@class='gb_za gb_3f gb_9f gb_Oe gb_Fb']")
+    @FindBy(xpath = "//a[@class='gb_za gb_4f gb_ag gb_Pe gb_Fb']")
     WebElement logOutBtn;
 
     @FindBy(linkText = "Sent Mail")
