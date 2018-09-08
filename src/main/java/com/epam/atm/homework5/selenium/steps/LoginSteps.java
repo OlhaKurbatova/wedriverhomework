@@ -2,7 +2,6 @@ package com.epam.atm.homework5.selenium.steps;
 
 import com.epam.atm.homework5.selenium.businessobjects.GmailUser;
 import com.epam.atm.homework5.selenium.pages.HomePage;
-import com.epam.atm.homework5.selenium.pages.InboxPage;
 import com.epam.atm.homework5.selenium.pages.LogInPage;
 import com.epam.atm.homework5.selenium.pages.PasswordPage;
 import org.openqa.selenium.WebDriver;

@@ -1,35 +1,35 @@
 package com.epam.atm.homework5.selenium.drivermanagers;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class DriverManager {
 
     private WebDriver driver;
-    private final static int TIMEOUT = 30;
+    private static final int TIMEOUT = 30;
     private static final int CHROME = 0;
     private static final int FIREFOX = 1;
-    private final static int BROWSER = CHROME;
+    private static final int BROWSER = CHROME;
     private static final String URL_HOME = "https://www.google.com/intl/ru/gmail/about/#";
 
-    private static DriverManager INSTANCE;
+    private static DriverManager instance;
+
+    private static final Logger logger = LogManager.getLogger();
 
     private DriverManager() {
     }
 
-    public static DriverManager getInstance(){
-        if(INSTANCE == null){
-            INSTANCE = new DriverManager();
+    public static DriverManager getInstance() {
+        if (instance == null) {
+            instance = new DriverManager();
         }
-        return INSTANCE;
+        return instance;
     }
 
     public WebDriver getDriver() {
@@ -44,18 +44,19 @@ public class DriverManager {
                     // Maximize browser window via options, just an example
                     options.addArguments("start-maximized");
                     driver = new ChromeDriver(options);
-//                    try {
-//                        driver = new RemoteWebDriver(new URL("http://127.0.0.1:4444/wd/hub"), DesiredCapabilities.chrome());
-//                    } catch (MalformedURLException e) {
-//                        e.printStackTrace();
-//                    }
-
+                    break;
+                default:
+                    driver = new FirefoxDriver();
                     break;
             }
             driver.get(URL_HOME);
             driver.manage().timeouts().implicitlyWait(TIMEOUT, TimeUnit.SECONDS);
         }
         return driver;
+    }
+
+    public Logger getLogger() {
+        return logger;
     }
 
     public void closeDriver() {

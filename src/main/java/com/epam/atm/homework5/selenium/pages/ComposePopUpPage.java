@@ -47,15 +47,6 @@ public class ComposePopUpPage extends GmailPage {
         return this;
     }
 
-    public void clickSend() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        ElementActions.click(driver, sendBtn);
-    }
-
     public void clickSendFromKeys(){
         new Actions(driver).sendKeys(Keys.CONTROL, Keys.ENTER).build().perform();
     }

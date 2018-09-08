@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 
 public class GmailSendMailFromDraftsTest {
 
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = DriverManager.getInstance().getLogger();
 
     private WebDriver driver;
     private GmailUser userBObject;

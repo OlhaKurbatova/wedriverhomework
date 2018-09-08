@@ -1,5 +1,6 @@
 package com.epam.atm.homework5.selenium.tools;
 
+import com.epam.atm.homework5.selenium.drivermanagers.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +13,9 @@ import static com.epam.atm.homework5.selenium.tools.JSHighlighter.unHighlightEle
 import static com.epam.atm.homework5.selenium.tools.Screenshoter.takeScreenshot;
 
 public class ElementActions {
+
+    private ElementActions() {
+    }
 
     public static final int WAIT_FOR_ELEMENT_TIMEOUT_SECONDS = 10;
 
@@ -29,7 +33,7 @@ public class ElementActions {
 
     public static void click(WebDriver driver, final WebElement element) {
         waitForVisible(driver, element);
-        System.out.println("Clicking element '" + element.getText());
+        DriverManager.getInstance().getLogger().info("Clicking element '" + element.getText());
         highlightElement(element, driver);
         takeScreenshot();
         unHighlightElement(element, driver);
@@ -40,7 +44,7 @@ public class ElementActions {
         waitForVisible(driver, element);
         element.clear();
         highlightElement(element, driver);
-        System.out.println("Typing text '" + text + "' to input form '" + element.getAttribute("name"));
+        DriverManager.getInstance().getLogger().info("Typing text '" + text + "' to input form '" + element.getAttribute("name"));
         element.sendKeys(text);
         takeScreenshot();
         unHighlightElement(element, driver);
@@ -50,7 +54,7 @@ public class ElementActions {
         waitForVisible(driver, element);
         waitForVisible(driver, target);
         takeScreenshot();
-        System.out.println("Dragging element '" + element.getText() + "to '" + target.getText());
+        DriverManager.getInstance().getLogger().info("Dragging element '" + element.getText() + "to '" + target.getText());
         (new Actions(driver)).dragAndDrop(element, target).perform();
     }
 }

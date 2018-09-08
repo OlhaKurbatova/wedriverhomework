@@ -53,14 +53,14 @@ public class MailsBoxSteps extends AbstractSteps {
                 fillToField(email.getToValue()).
                 fillSubjectField(email.getSubjectValue()).
                 fillMessageField(email.getMessageValue()).
-                clickSend();
+                clickSendFromKeys();
     }
 
     public String openDraftsAndGetEmailMessageAndSend(EmailObject email) {
         DraftsMailPage draftsMailPage = page.clickDrafts();
         ComposePopUpPage composePopUpPage = draftsMailPage.findMailBySubjectAndClick(email.getSubjectValue());
         String message = composePopUpPage.getPopUpEmailMessageValue();
-        composePopUpPage.clickSend();
+        composePopUpPage.clickSendFromKeys();
         return message;
     }
 
@@ -101,9 +101,4 @@ public class MailsBoxSteps extends AbstractSteps {
     public void signOut() {
         page.signOut();
     }
-
-
-//     draftsMailPage = composePopUpPage.clickDrafts();
-//        composePopUpPage = draftsMailPage.findMailBySubjectAndClick(emailBObject.getSubjectValue());
-
 }

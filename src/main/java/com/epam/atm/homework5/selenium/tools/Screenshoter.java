@@ -8,6 +8,9 @@ import org.openqa.selenium.WebDriver;
 import java.io.*;
 
 public class Screenshoter {
+    private Screenshoter() {
+    }
+
     private static final String SCREENSHOTS_NAME_TPL = "screenshots/scr";
 
     public static void takeScreenshot() {
@@ -17,9 +20,9 @@ public class Screenshoter {
             String screenshotName = SCREENSHOTS_NAME_TPL + System.nanoTime();
             File copy = new File(screenshotName + ".png");
             copyFile(screenshot, copy);
-            System.out.println("Saved screenshot: " + screenshotName);
+            DriverManager.getInstance().getLogger().info("Saved screenshot: " + screenshotName);
         } catch (IOException e) {
-            System.out.println("Failed to make screenshot");
+            DriverManager.getInstance().getLogger().info("Failed to make screenshot");
         }
     }
 
