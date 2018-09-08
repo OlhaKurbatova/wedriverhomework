@@ -52,7 +52,7 @@ public class DriverManager {
             driver.get(URL_HOME);
             driver.manage().timeouts().implicitlyWait(TIMEOUT, TimeUnit.SECONDS);
         }
-        return driver;
+        return new WebDriverDecorator(driver);
     }
 
     public Logger getLogger() {
