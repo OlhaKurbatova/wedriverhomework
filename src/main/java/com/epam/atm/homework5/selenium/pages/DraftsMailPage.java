@@ -21,8 +21,8 @@ public class DraftsMailPage extends MailListPage {
     @FindBy(xpath = "//div[text()='Discard drafts']")
     WebElement discardDraftsBtn;
 
-    protected DraftsMailPage(WebDriver driver) {
-        super(driver);
+    protected DraftsMailPage() {
+        super();
     }
 
     public boolean isMailListEmpty() {
@@ -46,6 +46,6 @@ public class DraftsMailPage extends MailListPage {
 
     public ComposePopUpPage findMailBySubjectAndClick(String subject) {
         ElementActions.clickByLocator(driver, By.xpath(String.format(XPATH_DRAFTED_SUBJECT, subject)));
-        return new ComposePopUpPage(driver);
+        return new ComposePopUpPage();
     }
 }

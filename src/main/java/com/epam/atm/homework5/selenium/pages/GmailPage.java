@@ -15,6 +15,14 @@ import static com.epam.atm.homework5.selenium.tools.ElementActions.WAIT_FOR_ELEM
 
 public abstract class GmailPage extends AbstractPage {
 
+    public static GmailPage getGmailPage() {
+        return new InboxPage();
+    }
+
+    public static MailListPage getMailsListPage() {
+        return new InboxPage();
+    }
+
     protected static final String XPATH_DRAFTS_LINK = "//a[@href=\"https://mail.google.com/mail/u/0/#drafts\"]";
     public static final By SELECTED_SENT_DRAFT_LOCATOR = By.xpath("//div[@class='aim ain']/div/div/div[2]/span/a");
     private static final String LINK_TEXT_SENT_MAIL = "Sent Mail";
@@ -38,21 +46,21 @@ public abstract class GmailPage extends AbstractPage {
     @FindBy(xpath = "//div[@class='T-I J-J5-Ji T-I-KE L3']")
     WebElement composeBtn;
 
-    protected GmailPage(WebDriver driver) {
-        super(driver);
+    protected GmailPage() {
+        super();
     }
 
     public PasswordPage signOut() {
         ElementActions.click(driver, accountIcon);
         ElementActions.click(driver, logOutBtn);
-        return new PasswordPage(driver);
+        return new PasswordPage();
     }
 
     public SentMailsPage clickSentLink() {
         ElementActions.click(driver, sentLink);
         new WebDriverWait(driver, WAIT_FOR_ELEMENT_TIMEOUT_SECONDS).until(
                 ExpectedConditions.textToBe(SELECTED_SENT_DRAFT_LOCATOR, LINK_TEXT_SENT_MAIL));
-        return new SentMailsPage(driver);
+        return new SentMailsPage();
     }
 
     public DraftsMailPage clickDrafts() {
@@ -65,16 +73,16 @@ public abstract class GmailPage extends AbstractPage {
         ElementActions.click(driver, draftsLink);
         new WebDriverWait(driver, WAIT_FOR_ELEMENT_TIMEOUT_SECONDS).until(
                 ExpectedConditions.textMatches(SELECTED_SENT_DRAFT_LOCATOR, Pattern.compile("Drafts")));
-        return new DraftsMailPage(driver);
+        return new DraftsMailPage();
     }
 
     public BinMailPage clickBin() {
         ElementActions.click(driver, binLink);
-        return new BinMailPage(driver);
+        return new BinMailPage();
     }
 
     public ComposePopUpPage clickCompose() {
         ElementActions.click(driver, composeBtn);
-        return new ComposePopUpPage(driver);
+        return new ComposePopUpPage();
     }
 }

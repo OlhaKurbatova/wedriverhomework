@@ -5,7 +5,6 @@ import com.epam.atm.homework5.selenium.businessobjects.GmailUser;
 import com.epam.atm.homework5.selenium.drivermanagers.DriverManager;
 import com.epam.atm.homework5.selenium.steps.LoginSteps;
 import com.epam.atm.homework5.selenium.steps.MailsBoxSteps;
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;

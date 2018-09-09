@@ -28,8 +28,8 @@ public class ComposePopUpPage extends GmailPage {
     WebElement closeIcon;
 
 
-    protected ComposePopUpPage(WebDriver driver) {
-        super(driver);
+    public ComposePopUpPage() {
+        super();
     }
 
     public ComposePopUpPage fillToField(String to) {

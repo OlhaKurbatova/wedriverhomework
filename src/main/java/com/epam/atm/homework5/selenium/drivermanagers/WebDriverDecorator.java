@@ -10,6 +10,10 @@ import java.util.Set;
 public class WebDriverDecorator implements WebDriver {
     protected WebDriver driver;
 
+    public WebDriver getDriver(){
+        return driver;
+    }
+
     public WebDriverDecorator(WebDriver driver) {
         this.driver = driver;
     }

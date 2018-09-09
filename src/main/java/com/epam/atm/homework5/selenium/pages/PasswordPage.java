@@ -13,8 +13,8 @@ public class PasswordPage extends AbstractPage {
     @FindBy(id = ID_PASSWORD_NEXT)
     WebElement passwordNextButton;
 
-    protected PasswordPage(WebDriver driver) {
-        super(driver);
+    protected PasswordPage() {
+        super();
     }
 
 
@@ -25,6 +25,6 @@ public class PasswordPage extends AbstractPage {
 
     public InboxPage clickNextBtn() {
         ElementActions.click(driver, passwordNextButton);
-        return new InboxPage(driver);
+        return new InboxPage();
     }
 }

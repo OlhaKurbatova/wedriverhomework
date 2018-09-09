@@ -1,6 +1,7 @@
 package com.epam.atm.homework5.selenium.tools;
 
 import com.epam.atm.homework5.selenium.drivermanagers.DriverManager;
+import com.epam.atm.homework5.selenium.drivermanagers.WebDriverDecorator;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +16,9 @@ public class Screenshoter {
 
     public static void takeScreenshot() {
         WebDriver driver = DriverManager.getInstance().getDriver();
+        if (driver instanceof WebDriverDecorator) {
+            driver = ((WebDriverDecorator) driver).getDriver();
+        }
         File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
             String screenshotName = SCREENSHOTS_NAME_TPL + System.nanoTime();

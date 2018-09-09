@@ -14,8 +14,8 @@ public class LogInPage extends AbstractPage {
     WebElement loginNextButton;
 
 
-    protected LogInPage(WebDriver driver) {
-        super(driver);
+    protected LogInPage() {
+        super();
     }
 
     public LogInPage fillLoginField(String user) {
@@ -24,6 +24,6 @@ public class LogInPage extends AbstractPage {
     }
     public PasswordPage clickNextBtn() {
         ElementActions.click(driver, loginNextButton);
-        return new PasswordPage(driver);
+        return new PasswordPage();
     }
 }

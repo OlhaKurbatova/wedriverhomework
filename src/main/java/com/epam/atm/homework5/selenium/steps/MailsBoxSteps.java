@@ -13,7 +13,7 @@ public class MailsBoxSteps extends AbstractSteps {
 
     public MailsBoxSteps(WebDriver webDriver) {
         super(webDriver);
-        page = new InboxPage(webDriver);
+        page = new InboxPage();
     }
 
     public void clearBinDraftSent() {
@@ -91,7 +91,7 @@ public class MailsBoxSteps extends AbstractSteps {
         return emails.size();
     }
 
-    public void dragNdropFirstVisibleSentMailToBinAndClickRefresh(){
+    public void dragNdropFirstVisibleSentMailToBinAndClickRefresh() {
         SentMailsPage sentMailsPage = page.clickSentLink();
         List<WebElement> emails = sentMailsPage.getEmailsList();
         sentMailsPage.dragAndDropFirstEmailToBinAndConfirm(emails);

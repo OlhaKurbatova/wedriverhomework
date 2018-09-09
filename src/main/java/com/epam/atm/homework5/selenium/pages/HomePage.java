@@ -11,11 +11,11 @@ public class HomePage extends AbstractPage {
     WebElement loginButton;
 
     public HomePage(WebDriver driver) {
-        super(driver);
+        super();
     }
 
     public LogInPage clickLogin() {
         ElementActions.click(driver, loginButton);
-        return new LogInPage(driver);
+        return new LogInPage();
     }
 }
