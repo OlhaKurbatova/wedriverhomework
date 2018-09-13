@@ -1,7 +1,7 @@
 Feature: Gmail send email from drafts
 
   Background:
-    Given I log in with creds:
+    Given I log in with credentials:
       | email    | tyled6@gmail.com |
       | password | qwerty23         |
 

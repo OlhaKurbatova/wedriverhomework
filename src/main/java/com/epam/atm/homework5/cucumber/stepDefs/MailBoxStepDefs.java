@@ -1,4 +1,4 @@
-package com.epam.atm.homework5.selenium.stepDefs;
+package com.epam.atm.homework5.cucumber.stepDefs;
 
 import com.epam.atm.homework5.selenium.pages.*;
 import com.epam.atm.homework5.selenium.tools.ElementActions;
