@@ -5,9 +5,14 @@
         <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
     </listeners>
 
-    <test verbose="2" name="Gmail drafts test">
+    <test verbose="3" name="Gmail drag and drop test">
         <classes>
-            <class name="com.epam.atm.homework5.selenium.GmailSendMailFromDraftsTest"/>
+            <class name="com.epam.atm.homework5.selenium.GmailDrargAndDropTest"/>
         </classes>
     </test>
+    <!--<test verbose="2" name="Gmail drafts test">-->
+        <!--<classes>-->
+            <!--<class name="com.epam.atm.homework5.selenium.GmailSendMailFromDraftsTest"/>-->
+        <!--</classes>-->
+    <!--</test>-->
 </suite>
