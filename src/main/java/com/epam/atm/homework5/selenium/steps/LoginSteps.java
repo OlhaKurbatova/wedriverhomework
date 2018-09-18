@@ -13,7 +13,7 @@ public class LoginSteps extends AbstractSteps {
     }
 
     public void login(GmailUser user) {
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage();
 
         LogInPage logInPage = homePage.clickLogin().fillLoginField(user.getLogin());
         PasswordPage passwordPage = logInPage.clickNextBtn();

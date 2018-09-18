@@ -21,10 +21,6 @@ public class DraftsMailPage extends MailListPage {
     @FindBy(xpath = "//div[text()='Discard drafts']")
     WebElement discardDraftsBtn;
 
-    protected DraftsMailPage() {
-        super();
-    }
-
     public boolean isMailListEmpty() {
         ElementActions.waitForVisible(driver, draftsLink);
         return !DRAFTS_TEXT_PATTERN.matcher(draftsLink.getText()).find();

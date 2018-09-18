@@ -1,6 +1,5 @@
 package com.epam.atm.homework5.selenium.drivermanagers;
 
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,8 +18,6 @@ public class DriverManager {
     private static final String URL_HOME = "https://www.google.com/intl/ru/gmail/about/#";
 
     private static DriverManager instance;
-
-    private static final Logger logger = LogManager.getLogger();
 
     private DriverManager() {
     }
@@ -53,10 +50,6 @@ public class DriverManager {
             driver.manage().timeouts().implicitlyWait(TIMEOUT, TimeUnit.SECONDS);
         }
         return new WebDriverDecorator(driver);
-    }
-
-    public Logger getLogger() {
-        return logger;
     }
 
     public void closeDriver() {

@@ -1,6 +1,5 @@
 package com.epam.atm.homework5.selenium.tools;
 
-import com.epam.atm.homework5.selenium.drivermanagers.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,7 +32,7 @@ public class ElementActions {
 
     public static void click(WebDriver driver, final WebElement element) {
         waitForVisible(driver, element);
-        DriverManager.getInstance().getLogger().info("Clicking element '" + element.getText());
+        MyLogger.info("Clicking element '" + element.getText());
         highlightElement(element, driver);
         takeScreenshot();
         unHighlightElement(element, driver);
@@ -44,7 +43,7 @@ public class ElementActions {
         waitForVisible(driver, element);
         element.clear();
         highlightElement(element, driver);
-        DriverManager.getInstance().getLogger().info("Typing text '" + text + "' to input form '" + element.getAttribute("name"));
+        MyLogger.info("Typing text '" + text + "' to input form '" + element.getAttribute("name"));
         element.sendKeys(text);
         takeScreenshot();
         unHighlightElement(element, driver);
@@ -54,7 +53,7 @@ public class ElementActions {
         waitForVisible(driver, element);
         waitForVisible(driver, target);
         takeScreenshot();
-        DriverManager.getInstance().getLogger().info("Dragging element '" + element.getText() + "to '" + target.getText());
+        MyLogger.info("Dragging element '" + element.getText() + "to '" + target.getText());
         (new Actions(driver)).dragAndDrop(element, target).perform();
     }
 }

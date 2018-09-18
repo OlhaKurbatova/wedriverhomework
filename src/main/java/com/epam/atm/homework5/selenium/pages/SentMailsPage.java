@@ -24,10 +24,6 @@ public class SentMailsPage extends MailListPage {
     @FindBy(xpath = "//div[@class='G-Ni J-J5-Ji']/div[@aria-label='Refresh']/div[@class='asa']")
     WebElement refreshBtn;
 
-    protected SentMailsPage() {
-        super();
-    }
-
     public boolean isMailListEmpty() {
         return !driver.findElements(By.className(CLASS_NAME_EMPTY)).isEmpty();
     }

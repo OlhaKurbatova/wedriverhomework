@@ -14,7 +14,7 @@ public class LoginStepDefs {
         String email = (String) creds.asMap(String.class, String.class).get("email");
         String password = (String) creds.asMap(String.class, String.class).get("password");
 
-        HomePage homePage = new HomePage(DriverManager.getInstance().getDriver());
+        HomePage homePage = new HomePage();
 
         LogInPage logInPage = homePage.clickLogin().fillLoginField(email);
         PasswordPage passwordPage = logInPage.clickNextBtn();

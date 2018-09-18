@@ -8,10 +8,6 @@ import java.util.List;
 public abstract class MailListPage extends GmailPage {
     private static final String XPATH_CHECKBOX = "//div[@role='checkbox']";
 
-    protected MailListPage() {
-        super();
-    }
-
     public abstract boolean isMailListEmpty();
 
     public MailListPage checkAllCheckboxes() {

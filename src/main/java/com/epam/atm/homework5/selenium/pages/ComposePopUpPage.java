@@ -27,11 +27,6 @@ public class ComposePopUpPage extends GmailPage {
     @FindBy(xpath = "//img[@class='Ha']")
     WebElement closeIcon;
 
-
-    public ComposePopUpPage() {
-        super();
-    }
-
     public ComposePopUpPage fillToField(String to) {
         ElementActions.type(driver, toField, to);
         return this;

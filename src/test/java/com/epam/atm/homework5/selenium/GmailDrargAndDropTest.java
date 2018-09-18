@@ -5,6 +5,7 @@ import com.epam.atm.homework5.selenium.businessobjects.GmailUser;
 import com.epam.atm.homework5.selenium.drivermanagers.DriverManager;
 import com.epam.atm.homework5.selenium.steps.LoginSteps;
 import com.epam.atm.homework5.selenium.steps.MailsBoxSteps;
+import com.epam.atm.homework5.selenium.tools.MyLogger;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -14,8 +15,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class GmailDrargAndDropTest {
-
-    private static final Logger logger = DriverManager.getInstance().getLogger();
 
     private WebDriver driver;
     private GmailUser userBObject;
@@ -30,20 +29,20 @@ public class GmailDrargAndDropTest {
 
     @Test
     public void dragAndDropTest() {
-        logger.info("Step 1. Open home page and login");
+        MyLogger.info("Step 1. Open home page and login");
         new LoginSteps(driver).login(userBObject);
         MailsBoxSteps mailsBoxSteps = new MailsBoxSteps(driver);
-        logger.info("Step 2. Clear sent and send new letter");
+        MyLogger.info("Step 2. Clear sent and send new letter");
         mailsBoxSteps.clearAndCreateSentMail(emailBObject);
         int sizeBeforeDragAndDropDelete = mailsBoxSteps.getEmailCountOnSentPage();
-        logger.info("Step 3. Drag and drop sent email to bin and click refresh");
+        MyLogger.info("Step 3. Drag and drop sent email to bin and click refresh");
         mailsBoxSteps.dragNdropFirstVisibleSentMailToBinAndClickRefresh();
         int sizeAfterDragAndDropDelete = mailsBoxSteps.getEmailCountOnSentPage();
 
-        logger.info("Step 4. Assert that count of emails before and after drag and drop deletion is different");
+        MyLogger.info("Step 4. Assert that count of emails before and after drag and drop deletion is different");
         Assert.assertNotEquals(sizeBeforeDragAndDropDelete, sizeAfterDragAndDropDelete, "email didn't deleted");
 
-        logger.info("Step 5. Sign out");
+        MyLogger.info("Step 5. Sign out");
         mailsBoxSteps.signOut();
     }
 

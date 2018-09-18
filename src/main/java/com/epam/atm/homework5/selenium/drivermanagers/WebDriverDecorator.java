@@ -1,5 +1,6 @@
 package com.epam.atm.homework5.selenium.drivermanagers;
 
+import com.epam.atm.homework5.selenium.tools.MyLogger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -35,9 +36,7 @@ public class WebDriverDecorator implements WebDriver {
     }
 
     public WebElement findElement(By by) {
-        DriverManager.getInstance().getLogger().info(
-                String.format("Finding element: %s, current URL: '%s'", by.toString(), driver.getCurrentUrl()),
-                true);
+        MyLogger.info(String.format("Finding element: %s, current URL: '%s'", by.toString(), driver.getCurrentUrl()));
         return driver.findElement(by);
     }
 

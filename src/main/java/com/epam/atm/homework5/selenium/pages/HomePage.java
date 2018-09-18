@@ -10,10 +10,6 @@ public class HomePage extends AbstractPage {
     @FindBy(xpath = "//a[@class='gmail-nav__nav-link gmail-nav__nav-link__sign-in']")
     WebElement loginButton;
 
-    public HomePage(WebDriver driver) {
-        super();
-    }
-
     public LogInPage clickLogin() {
         ElementActions.click(driver, loginButton);
         return new LogInPage();

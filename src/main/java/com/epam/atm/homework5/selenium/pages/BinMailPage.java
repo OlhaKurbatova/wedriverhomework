@@ -13,10 +13,6 @@ public class BinMailPage extends MailListPage {
     @FindBy(xpath = "//div[text()='Delete forever']")
     WebElement deleteForeverBtn;
 
-    protected BinMailPage() {
-        super();
-    }
-
     public boolean isMailListEmpty() {
         return !driver.findElements(By.xpath(XPATH_TEXT_NO_CONVERSATIONS_IN_BIN)).isEmpty();
     }

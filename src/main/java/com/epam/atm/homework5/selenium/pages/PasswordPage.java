@@ -13,11 +13,6 @@ public class PasswordPage extends AbstractPage {
     @FindBy(id = ID_PASSWORD_NEXT)
     WebElement passwordNextButton;
 
-    protected PasswordPage() {
-        super();
-    }
-
-
     public PasswordPage fillPasswordField(String password) {
         ElementActions.type(driver, passwordFieldInput, password);
         return this;

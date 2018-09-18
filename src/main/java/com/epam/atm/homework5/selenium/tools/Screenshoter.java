@@ -12,7 +12,11 @@ public class Screenshoter {
     private Screenshoter() {
     }
 
-    private static final String SCREENSHOTS_NAME_TPL = "screenshots/scr";
+    private static final String SCREENSHOTS_NAME_TPL = "target/screenshots/";
+    static {
+        File folder = new File(SCREENSHOTS_NAME_TPL);
+        if (!folder.exists()) folder.mkdirs();
+    }
 
     public static void takeScreenshot() {
         WebDriver driver = DriverManager.getInstance().getDriver();
@@ -21,12 +25,14 @@ public class Screenshoter {
         }
         File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
+
             String screenshotName = SCREENSHOTS_NAME_TPL + System.nanoTime();
             File copy = new File(screenshotName + ".png");
             copyFile(screenshot, copy);
-            DriverManager.getInstance().getLogger().info("Saved screenshot: " + screenshotName);
+            MyLogger.attach(copy.getPath(), "Screnshot message");
+            MyLogger.info("Saved screenshot: " + screenshotName);
         } catch (IOException e) {
-            DriverManager.getInstance().getLogger().info("Failed to make screenshot");
+            MyLogger.error("Failed to make screenshot");
         }
     }
 

@@ -13,11 +13,6 @@ public class LogInPage extends AbstractPage {
     @FindBy(css = CSS_LOGIN_NEXT_BTN)
     WebElement loginNextButton;
 
-
-    protected LogInPage() {
-        super();
-    }
-
     public LogInPage fillLoginField(String user) {
         ElementActions.type(driver, loginFieldInput, user);
         return this;
